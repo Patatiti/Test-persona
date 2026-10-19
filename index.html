@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quel est votre profil ?</title>
+<style>
+:root{--bg:#f3f7fd;--surface:#fff;--ink:#0f2447;--muted:#4b5f80;--blue:#1c4fa3;--blue-d:#123a7c;--line:#c5d4ea;--bar:#dbe6f6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0b1630;--surface:#12234a;--ink:#e8eefb;--muted:#a3b4d3;--blue:#6f9df0;--blue-d:#9bbcf7;--line:#2a4073;--bar:#223a6b}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0b1630;--surface:#12234a;--ink:#e8eefb;--muted:#a3b4d3;--blue:#6f9df0;--blue-d:#9bbcf7;--line:#2a4073;--bar:#223a6b}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Times New Roman",Times,serif;font-size:19px;line-height:1.55}
+main{max-width:680px;margin:0 auto;padding:28px 20px 60px}
+h1{font-size:2.1rem;line-height:1.15;margin:0 0 .5em;color:var(--blue-d)}
+h2{font-size:1.3rem;margin:1.2em 0 .4em;color:var(--blue-d)}
+p{margin:0 0 1em}
+.muted{color:var(--muted);font-size:.9em}
+button{font:inherit;cursor:pointer;border:1px solid var(--blue);background:var(--surface);color:var(--blue-d);padding:.6em 1em;border-radius:4px}
+button:hover{background:var(--bar)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+button.main{background:var(--blue);color:#fff}
+button.main:hover{background:var(--blue-d)}
+button:disabled{opacity:.45;cursor:default}
+:root[data-theme="dark"] button.main,:root[data-theme="dark"] .scale button.on{color:#0b1630}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) button.main,:root:not([data-theme="light"]) .scale button.on{color:#0b1630}}
+.prog{height:6px;background:var(--bar);border-radius:3px;margin:0 0 28px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--blue)}
+.q{font-size:1.45rem;line-height:1.35;margin:0 0 1.2em;min-height:4.2em}
+.scale{display:grid;gap:8px}
+.scale button{text-align:left;padding:.7em 1em}
+.scale button.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.nav{margin-top:24px}
+.card{background:var(--surface);border:1px solid var(--line);border-left:8px solid var(--c,var(--blue));padding:16px 20px;margin:0 0 16px}
+.card .t{font-size:1.5rem;font-weight:700;color:var(--blue-d);margin:0 0 .3em}
+.meter{height:10px;background:var(--bar);margin:.2em 0 1em}
+.meter i{display:block;height:100%;background:var(--c)}
+.sc{display:flex;justify-content:space-between;gap:12px}
+.note{border:1px dashed var(--blue);padding:12px 16px;margin:0 0 16px}
+input{font:inherit;width:100%;padding:.55em;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:4px;margin:.5em 0}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+dt{font-weight:700;color:var(--blue-d)}
+dd{margin:0 0 .7em}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+var T=[
+{n:"Le Consciencieux",c:"#6b3fa0",
+d:"Un profil structuré et fiable, guidé par la règle, le devoir et la préparation.",
+r:["Repose sur la compétence et la rigueur : la confiance se construit par le travail bien fait.","S’exerce par les faits, la préparation et l’exemple, avec peu de recours à la séduction ou au cadrage.","L’aide à autrui relève surtout du devoir : engagements tenus et obligations respectées, même sans affinité.","Attiré par la fiabilité, le sérieux et la constance.","Réactions contrôlées et anticipées ; risque de rigidité ou de retenue."],
+l:"Le sens du devoir et la maîtrise émotionnelle se renforcent : la conduite suit la règle plutôt que l’élan du moment.",
+q:["Je me fie à mon travail soigné et rigoureux pour être pris(e) au sérieux.","Je convaincs surtout par les faits, la préparation et l’exemple.","Je considère comme un devoir de tenir mes engagements et d’aider ceux qui en ont besoin, même sans affinité.","Je suis attiré(e) par les personnes sérieuses, fiables et constantes.","Je garde le contrôle de mes réactions et je planifie avant d’agir.","Ma fiabilité me donne l’assurance dont j’ai besoin face aux autres.","Pour faire changer quelqu’un d’avis, je m’appuie sur des preuves et sur ma propre conduite.","Une obligation reste une obligation, même envers quelqu’un que je ne connais pas ou n’apprécie pas.","Ce que j’apprécie d’abord chez quelqu’un, c’est qu’on peut compter sur lui.","Je réfléchis et je me prépare avant de réagir, même quand je suis contrarié(e)."]},
+{n:"Le Nerveux",c:"#e0a800",
+d:"Un profil très sensible, attentif au risque et à l’erreur, que le stress traverse vite.",
+r:["Fragile : le doute persiste même après des signes de reconnaissance.","Évitement : tendance à laisser la décision aux autres pour éviter le conflit ou l’erreur.","Forte sensibilité à la détresse d’autrui, parfois jusqu’à la surcharge ; les devoirs sont ressentis comme pesants.","Attiré par le calme, la douceur et les personnes rassurantes.","Réponse rapide au stress, rumination ; la tension met du temps à retomber."],
+l:"L’empathie élevée et le doute de soi se combinent : les devoirs envers autrui peuvent devenir une source d’anxiété plutôt qu’une force.",
+q:["Je doute souvent de mes capacités, même quand les autres me complimentent.","J’évite de m’imposer et je préfère laisser les autres décider, de peur de me tromper.","Je ressens fortement la détresse de mes proches, au point d’en être submergé(e).","Je me sens attiré(e) par les personnes calmes et rassurantes.","Mon corps réagit vite au stress : cœur qui bat, gorge nouée, pensées qui tournent.","Les compliments ne me rassurent pas vraiment : je crains de ne pas être à la hauteur.","Je préfère me ranger à l’avis des autres plutôt que de risquer le conflit.","Les difficultés de mes proches m’affectent profondément et me stressent beaucoup.","Je cherche chez les autres de la stabilité et de la sérénité.","Sous pression, je m’inquiète longtemps et j’ai du mal à me calmer."]},
+{n:"Le Diplomate",c:"#1c4fa3",
+d:"Un profil de médiation, attentif aux points de vue et soucieux d’apaiser.",
+r:["À l’aise dans les échanges, adossée à l’adaptation à l’interlocuteur.","Passe par le compromis et par une formulation qui ménage chacun, ce qui peut éviter des désaccords nécessaires.","Comprend plusieurs points de vue, y compris opposés ; les devoirs portent sur l’équité et la paix entre les personnes.","Attiré par l’ouverture, la courtoisie et l’aisance sociale.","Calme dans les tensions, avec un effort actif d’apaisement."],
+l:"L’empathie large et l’influence douce vont ensemble : la médiation relève d’un devoir de concorde, avec un risque d’éviter le conflit utile.",
+q:["Je suis à l’aise dans les échanges parce que je sais m’adapter à mon interlocuteur.","Je cherche des compromis et je formule mes demandes pour ne froisser personne.","J’essaie de comprendre les deux côtés d’un conflit, y compris le point de vue de ceux qui pensent autrement.","Je suis attiré(e) par les personnes ouvertes, courtoises et à l’aise en société.","Je garde la tête froide dans les tensions pour apaiser la situation.","Mon assurance vient de ma capacité à comprendre et à ménager les autres.","Pour obtenir un accord, j’adapte mes mots afin que chacun s’y retrouve.","Écouter chacun, y compris ceux avec qui je suis en désaccord, me semble une obligation.","J’apprécie les personnes agréables, ouvertes et faciles à vivre.","Quand une dispute éclate, je reste calme et je cherche à détendre l’atmosphère."]},
+{n:"Le Vaniteux",c:"#6b7280",
+d:"Un profil centré sur l’image, le statut et la reconnaissance.",
+r:["Haute estime de soi, qui attend une reconnaissance extérieure.","Gestion de l’image : discours ajusté pour être valorisé ou admiré.","L’aide dépend de sa visibilité et de ce qu’elle apporte à l’image ; les devoirs sont surtout conditionnels.","Attiré par l’éclat, le statut, l’allure et la réussite.","Sensibilité vive à la critique et à l’indifférence, avec une réaction visible."],
+l:"Une estime de soi élevée et une confiance dépendante du regard d’autrui coexistent ; l’empathie et les devoirs suivent surtout l’image renvoyée.",
+q:["J’ai une très haute opinion de moi-même et je trouve normal qu’on me le reconnaisse.","Je soigne mon image et j’adapte ce que je dis pour être admiré(e) ou mis(e) en valeur.","Mon aide aux autres dépend surtout de ce que cela dit de moi ou de ce que j’y gagne.","Je suis attiré(e) par les personnes brillantes, élégantes ou influentes.","Je supporte mal qu’on me critique ou qu’on m’ignore, et je le fais sentir.","Je mérite l’admiration des autres compte tenu de ce que je vaux.","Je choisis mes mots et mes sujets pour qu’on retienne le meilleur de moi.","Je suis plus enclin(e) à aider quand cela se voit et valorise mon image.","Le statut, l’allure et la réussite d’une personne comptent beaucoup dans l’attrait qu’elle exerce sur moi.","Une critique ou un manque d’attention me blesse vite et je réagis vivement."]},
+{n:"Le Généreux",c:"#c0392b",
+d:"Un profil tourné vers autrui, chaleureux et spontané dans le don.",
+r:["Tirée de l’utilité aux autres : la valeur de soi passe par le don.","S’exerce par l’encouragement et l’aide offerte, sans calcul.","Sentiment d’obligation envers toute personne en difficulté, connue ou non, y compris à ses dépens.","Attiré par la chaleur, la bonté et la générosité.","Réactions chaleureuses et spontanées, parfois vives pour défendre autrui."],
+l:"L’empathie universelle et les devoirs moraux se rejoignent ; le risque est l’épuisement ou la difficulté à fixer ses limites.",
+q:["Je me sens solide quand je suis utile aux autres.","J’influence les autres en les encourageant et en leur offrant mon aide, sans rien attendre.","Je me sens obligé(e) d’aider toute personne en difficulté, connue ou non, sans attendre de retour.","Je suis attiré(e) par les personnes chaleureuses et bienveillantes.","Je réagis avec chaleur et spontanéité, quitte à m’emporter pour défendre quelqu’un.","C’est en aidant que je trouve ma confiance et ma place.","Je cherche à convaincre par la bienveillance, sans arrière-pensée.","Aider un inconnu en détresse va de soi pour moi, même si cela me coûte.","Ce qui me touche chez quelqu’un, c’est sa bonté et sa générosité.","Mes émotions s’expriment vite et franchement, surtout quand il s’agit de soutenir ou de défendre autrui."]}];
+var LAB=["Pas du tout d’accord","Plutôt pas d’accord","Neutre","Plutôt d’accord","Tout à fait d’accord"];
+var CR=["Confiance en soi","Influence sur les autres","Empathie et devoirs moraux","Attirance sociale","Émotions et impulsivité"];
+var ORDER=[];for(var k=0;k<50;k++)ORDER.push((k%5)*10+Math.floor(k/5));
+var A=new Array(50).fill(0),pos=0,app=document.getElementById("app");
+function intro(){app.innerHTML='<h1>Quel est votre profil ?</h1><p>Test personnel à faire avec honnêteté et sérieux.</p><p class="muted">50 questions · environ 8 minutes</p><button class="main" id="go">Commencer</button>';document.getElementById("go").onclick=function(){pos=0;ask()}}
+function ask(){var id=ORDER[pos],c=Math.floor(id/10),i=id%10;
+app.innerHTML='<div class="prog"><i style="width:'+(pos/50*100)+'%"></i></div><p class="muted">Question '+(pos+1)+' sur 50</p><p class="q">'+T[c].q[i]+'</p><div class="scale">'+LAB.map(function(l,v){return '<button data-v="'+(v+1)+'" class="'+(A[id]==v+1?"on":"")+'">'+l+'</button>'}).join("")+'</div><div class="nav"><button id="bk"'+(pos?"":" disabled")+'>Précédent</button></div>';
+[].forEach.call(app.querySelectorAll(".scale button"),function(b){b.onclick=function(){A[id]=+b.dataset.v;if(pos<49){pos++;ask()}else done()}});
+document.getElementById("bk").onclick=function(){pos--;ask()}}
+function compute(a){var s=[],d=0,t=0;T.forEach(function(x,c){var z=0;for(var i=0;i<10;i++){z+=a[c*10+i];t+=a[c*10+i]}s.push(z);for(var j=0;j<5;j++)d+=Math.abs(a[c*10+j]-a[c*10+j+5])});return{s:s,d:d/25,m:t/50}}
+function show(a,shared){var R=compute(a),o=R.s.map(function(v,i){return i}).sort(function(x,y){return R.s[y]-R.s[x]}),f=o[0],g=o[1],gap=R.s[f]-R.s[g];
+var kind=gap>=8?"Profil marqué":gap>=4?"Profil net":"Profil mixte";
+var h='<h1>'+(shared?'Profil partagé':'Votre profil')+'</h1>';
+h+='<div class="card" style="--c:'+T[f].c+'"><p class="muted">'+kind+(gap<4?' : '+T[f].n+' et '+T[g].n:'')+'</p><p class="t">'+T[f].n+'</p><p>'+T[f].d+'</p><dl>'+T[f].r.map(function(x,i){return '<dt>'+CR[i]+'</dt><dd>'+x+'</dd>'}).join("")+'</dl></div>';
+h+='<h2>Liens entre les dimensions</h2><div class="card" style="--c:'+T[f].c+'"><p>'+T[f].l+'</p>'+(gap<4?'<p>Le profil secondaire, '+T[g].n+', nuance ce résultat : '+T[g].l+'</p>':'')+'</div>';
+h+='<h2>Affinité avec chaque profil</h2>';
+o.forEach(function(c){h+='<div class="card" style="--c:'+T[c].c+'"><div class="sc"><b>'+T[c].n+'</b><span class="muted">'+R.s[c]+'/50</span></div><div class="meter"><i style="width:'+((R.s[c]-10)/40*100)+'%"></i></div></div>'});
+if(R.d>1.3)h+='<div class="note"><b>Cohérence faible.</b> Des affirmations proches ont reçu des réponses très différentes (écart moyen '+R.d.toFixed(1)+' sur 4). Ce résultat est à interpréter avec prudence.</div>';
+else if(R.m>=4.2)h+='<div class="note"><b>Réponses très favorables.</b> La moyenne de vos réponses est élevée pour tous les profils : le classement reste à nuancer.</div>';
+if(!shared){var u=location.href.split("#")[0]+"#r="+a.join("");h+='<h2>Partager vos résultats</h2><div class="card"><p>Toute personne qui ouvre ce lien voit votre profil complet. Le lien contient vos réponses et ne passe par aucun serveur.</p><input id="lk" readonly value="'+u+'"><div class="row"><button class="main" id="cp">Copier le lien</button><button id="sh">Envoyer…</button><button id="rs">Refaire le test</button></div><p class="muted" id="msg"></p></div>';
+app.innerHTML=h;var lk=document.getElementById("lk"),m=document.getElementById("msg");
+document.getElementById("cp").onclick=function(){lk.select();try{navigator.clipboard.writeText(u).then(function(){m.textContent="Lien copié."},function(){document.execCommand("copy");m.textContent="Lien copié."})}catch(e){try{document.execCommand("copy");m.textContent="Lien copié."}catch(x){m.textContent="Sélectionnez le lien puis copiez-le."}}};
+document.getElementById("sh").onclick=function(){if(navigator.share){navigator.share({title:"Mon profil",url:u}).catch(function(){})}else{location.href="mailto:?subject="+encodeURIComponent("Mon profil")+"&body="+encodeURIComponent(u)}};
+document.getElementById("rs").onclick=function(){A=new Array(50).fill(0);try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}intro()}}
+else app.innerHTML=h;
+window.scrollTo(0,0)}
+function done(){try{history.replaceState(null,"","#r="+A.join(""))}catch(e){}show(A,false)}
+var mm=(location.hash||"").match(/^#r=([1-5]{50})$/);
+if(mm){show(mm[1].split("").map(Number),true)}else intro();
+</script>
+</body>
+</html>
